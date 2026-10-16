@@ -21,6 +21,8 @@ jobs:
     - name: Install test dependencies
       run: pip install pytest
 
+    - name: Train model
+      run: python src/train.py
+
     - name: Run tests
       run: pytest
-
