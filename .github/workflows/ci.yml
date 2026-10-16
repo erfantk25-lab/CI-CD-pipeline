@@ -1,19 +1,26 @@
-name: CI
+name: allt
 
-on: push
+on: [push, pull_request]
 
 jobs:
-  allt:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v7
+    - name: Checkout
+      uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v7
-        with:
-          python-version: "3.13"
+    - name: Set up Python
+      uses: actions/setup-python@v7
+      with:
+        python-version: '3.13'
 
-      - run: pip install -e .
+    - name: Install package
+      run: pip install -e .
 
-      - run: pytest
+    - name: Install test dependencies
+      run: pip install pytest
 
-      - run: python -m churn.model
+    - name: Run tests
+      run: pytest
+
